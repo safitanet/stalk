@@ -1,6 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Camera } from '@ionic-native/camera';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+
 import { MyApp } from './app.component';
 
 import { GalleryPage } from '../pages/gallery/gallery';
@@ -36,7 +39,9 @@ import { IFriendsProvider } from '../providers/i-friends/i-friends';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    IFriendsProvider
+    IFriendsProvider,
+    Camera,
+    Base64ToGallery
   ]
 })
 export class AppModule {}

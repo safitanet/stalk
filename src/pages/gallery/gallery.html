@@ -7,12 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>gallery</ion-title>
+    <ion-title>My gallery</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <button ion-button block (click)="getPicture()">Take a photo</button>
+  <img [src]="image" *ngIf="image" />
 </ion-content>
