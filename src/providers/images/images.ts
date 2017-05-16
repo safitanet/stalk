@@ -11,29 +11,22 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ImagesProvider {
 
-  tasks:any[];
-
-  constructor(public storage: Storage) {
-    this.storage.get("tasks").then((result)=>{
-      if (result) { 
-        this.tasks = JSON.parse(result);
-      }
-    });
+  images:any[] = [];
+  
+  constructor(public storage:Storage) {
+    console.log('Hello ImagesProvider Provider');
   }
 
-  getData():Promise<string> {
-    return this.storage.get('tasks');
+  getData():Promise<string>{
+    return this.storage.get("images");
+  };
+  
+  saveData(data:any){
+    return this.storage.get("images").then((results) => {
+      this.images = results ? JSON.parse(results):[];
+      this.images.push(data);
+      return this.storage.set("images", JSON.stringify(this.images));
+  });
+    
   }
-
-  saveData(data:any) {
-    this.tasks.push(data);
-    let newData = JSON.stringify(this.tasks);
-    return this.storage.set("tasks", newData).then((result)=>{
-      console.log('Guardado de tareas OK');
-      return JSON.parse(result);
-    }).catch((error)=>{
-      console.log('Ha habido un error en el guardado de tasks');
-    });
-  }
-
 }
