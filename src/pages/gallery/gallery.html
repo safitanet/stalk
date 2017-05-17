@@ -18,6 +18,7 @@
   
   <ion-list *ngIf="images">
         <ion-item *ngFor="let image of images">
+          <button ion-button block (click)="shareSheetShare(image)"> Share </button>
             <img [src]="image" *ngIf="image" />
         </ion-item>
     </ion-list>
