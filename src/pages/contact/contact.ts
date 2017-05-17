@@ -1,14 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { IFriendsProvider } from '../../providers/i-friends/i-friends'
+import { Friend } from '../../app/interface';
 
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
 })
-export class ContactPage {
+export class ContactPage implements OnInit {
 
-  constructor(public navCtrl: NavController) {
+  friends: Friend[] = [];
+  constructor(public navCtrl: NavController, public friendsServ: IFriendsProvider) {
+    
+  }
 
+  ngOnInit(){
+    this.friendsServ.getData().subscribe( (friends) => { 
+        this.friends = friends;
+        console.log( this.friends ); 
+      }, (error) => {
+        console.log( error );
+      });
   }
 
 }
