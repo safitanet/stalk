@@ -8,15 +8,16 @@ import { Friend } from "../../app/interface";
 @Injectable()
 export class IFriendsProvider {
 
-  friendUrl = '../../api/friends.json';
+  friendUrl = 'assets/api/friends.json';
 
-  constructor(public http: Http, public response: Response) {
+  constructor(public http: Http) {
 
   }
 
+  
+
   getData():Observable<Friend[]>{
     return this.http.get( this.friendUrl ).map((response:Response) => {
-            console.log( response );
             return <Friend[]>response.json();
         }).catch(this.handleError);
   }
