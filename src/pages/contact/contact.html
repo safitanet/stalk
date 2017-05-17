@@ -7,11 +7,28 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
-    </ion-item>
+  <ion-list *ngIf="friends" >
+    <ion-item-sliding *ngFor="let friend of friends">
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="assets/images/user.png">
+        </ion-avatar>
+        <h2>{{friend.name}} {{friend.surname}}</h2>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+          <ion-icon name="pin"></ion-icon>
+          Activar
+        </button>
+        <button ion-button color="primary">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="secondary">
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

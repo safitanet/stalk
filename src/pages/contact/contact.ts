@@ -17,7 +17,6 @@ export class ContactPage implements OnInit {
   ngOnInit(){
     this.friendsServ.getData().subscribe( (friends) => { 
         this.friends = friends;
-        console.log( this.friends ); 
       }, (error) => {
         console.log( error );
       });
