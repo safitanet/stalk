@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { Friend } from "../../app/interface";
 
-/*
-  Generated class for the IFriendsProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class IFriendsProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello IFriendsProvider Provider');
+  friendUrl = '../../api/friends.json';
+
+  constructor(public http: Http, public response: Response) {
+
   }
 
+  getData():Observable<Friend[]>{
+    return this.http.get( this.friendUrl ).map((response:Response) => {
+            console.log( response );
+            return <Friend[]>response.json();
+        }).catch(this.handleError);
+  }
 
+  saveData(){
+
+  }
+
+  private handleError( error:Response ){
+      return Observable.throw( error.json().error || 'Server error' );
+  }
 }
