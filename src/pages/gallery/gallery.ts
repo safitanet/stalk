@@ -29,6 +29,10 @@ export class GalleryPage {
               private base64ToGallery: Base64ToGallery,
               public imageService:ImagesProvider,
               private socialSharing: SocialSharing) {
+
+              this.imageService.getData().then((result) => {
+                this.images = result;
+              })
   }
 
 
@@ -59,11 +63,19 @@ export class GalleryPage {
       });
   }
 
-  shareSheetShare(image) {
-    this.socialSharing.share("Comparte tus fotos", "Stalk my friends", image, "").then(() => {
-      console.log("shareSheetShare: Success");
+  facebookShare(image) {
+    this.socialSharing.shareViaFacebook("Has sido stalked", image, '').then(() => {
+      console.log("shareViaFacebook: Success");
     }).catch(() => {
-      console.error("shareSheetShare: failed");
+      console.error("shareViaFacebook: failed");
+    });
+  }
+
+  whatsappShare(image) {
+    this.socialSharing.shareViaWhatsApp("Has sido stalked", image, '').then(() => {
+      console.log("shareViaWhatsApp: Success");
+    }).catch(() => {
+      console.error("shareViaWhatsApp: failed");
     });
   }
 

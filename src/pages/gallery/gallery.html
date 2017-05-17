@@ -18,7 +18,8 @@
   
   <ion-list *ngIf="images">
         <ion-item *ngFor="let image of images">
-          <button ion-button block (click)="shareSheetShare(image)"> Share </button>
+          <button ion-fab (click)="whatsappShare(image)"><ion-icon name="logo-whatsapp"></ion-icon></button>
+          <button ion-fab (click)="facebookShare(image)"><ion-icon name="logo-facebook"></ion-icon></button>
             <img [src]="image" *ngIf="image" />
         </ion-item>
     </ion-list>

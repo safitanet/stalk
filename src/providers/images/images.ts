@@ -17,8 +17,12 @@ export class ImagesProvider {
     console.log('Hello ImagesProvider Provider');
   }
 
-  getData():Promise<string>{
-    return this.storage.get("images");
+  getData(){
+    return this.storage.get("images").then((results) => {
+      this.images = results ? JSON.parse(results):[];
+      
+      return this.images;
+  });
   };
   
   saveData(data:any){
