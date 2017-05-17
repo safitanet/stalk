@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 import { ImagesProvider } from '../../providers/images/images';
+
 
 /**
  * Generated class for the GalleryPage page.
@@ -24,7 +27,8 @@ export class GalleryPage {
               public navParams: NavParams, 
               private camera: Camera,
               private base64ToGallery: Base64ToGallery,
-              public imageService:ImagesProvider) {
+              public imageService:ImagesProvider,
+              private socialSharing: SocialSharing) {
   }
 
 
@@ -53,6 +57,14 @@ export class GalleryPage {
       .catch(error => {
         console.error(error);
       });
+  }
+
+  shareSheetShare(image) {
+    this.socialSharing.share("Comparte tus fotos", "Stalk my friends", image, "").then(() => {
+      console.log("shareSheetShare: Success");
+    }).catch(() => {
+      console.error("shareSheetShare: failed");
+    });
   }
 
   saveImage(image:any){

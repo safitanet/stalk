@@ -5,6 +5,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { File } from '@ionic-native/file';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { MyApp } from './app.component';
 
@@ -47,6 +48,7 @@ import { ImagesProvider } from '../providers/images/images';
     Camera,
     Base64ToGallery,
     ImagesProvider,
+    SocialSharing,
     File
   ]
 })
